@@ -71,6 +71,9 @@ public class TryKaracubaMethod {
         int n = (numbers.get("a") + numbers.get("b")).length();
         // TODO n calculating problem
         Double result = Math.pow(10, n) * ac + Math.pow(10, n/2) * Math.abs(abcd - ac - bd) + bd;
+        System.out.println("\n Results");
+        System.out.println("Show The n = " + n);
+        System.out.println("Show The Result = " + result);
         return result.intValue();
     }
 

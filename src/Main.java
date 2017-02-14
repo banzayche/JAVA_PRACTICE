@@ -9,7 +9,8 @@ public class Main {
         System.out.println("\n Try Collections:");
         TryKaracubaMethod newTryKaracubaMethod = new TryKaracubaMethod();
 
-        System.out.println("RESULT = " + newTryKaracubaMethod.calculateThisShit(2242, 5624));
+        newTryKaracubaMethod.calculateThisShit(2242, 5624);
+//        System.out.println("RESULT = " + newTryKaracubaMethod.calculateThisShit(2242, 5624));
 //        System.out.println(newTryKaracubaMethod.devide(15223, 12));
     }
 }
