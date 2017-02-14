@@ -35,41 +35,50 @@ public class TryKaracubaMethod {
 //        notUniqueIntegers.put("product", product);
 //
 //        return notUniqueIntegers;
-        System.out.println("devide results is = " + devide(input).get("a") + "; b = " + devide(input).get("b") + ";");
+//        System.out.println("devide results is = " + devide(input).get("a") + "; b = " + devide(input).get("b") + ";");
     }
 
     // Simple solution for algorithm
-    public int calculateThisShit(Map<String, String> numbers){
-        // Define the length of integer
-        Integer n = (numbers.get("a")+numbers.get("b")).length();
+    public int calculateThisShit(int numberOne, int numberTwo){
+//        // Devide numbers a, b, c, d.
+        Map<String, String> numbers = devide(numberOne, numberTwo);
+        System.out.println("numbers(devided) = " + numbers);
+
+        // return result.intValue();
+        int a = Integer.parseInt(numbers.get("a"));
+        int b = Integer.parseInt(numbers.get("b"));
+        int c = Integer.parseInt(numbers.get("c"));
+        int d = Integer.parseInt(numbers.get("d"));
 
         // Get sum to define length of Integer
-        Integer abSum = Integer.valueOf(numbers.get("a")) + Integer.valueOf(numbers.get("b"));
-        Integer cdSum = Integer.valueOf(numbers.get("c")) + Integer.valueOf(numbers.get("d"));
+        int abSum = a + b;
+        int cdSum = c + d;
 
-        Integer a_plus_b_multiply_c_plus_d = 0;
+        int abcd = 0;
         // Call recursion or not
-        if(String.valueOf(abSum).length() > 2 || String.valueOf(cdSum).length() > 2) {
-            // TODO call recursion in right way !!!
-//             a_plus_b_multiply_c_plus_d = calculateThisShit();
+        if(String.valueOf(abSum).length() > 1 || String.valueOf(cdSum).length() > 1) {
+            abcd = calculateThisShit(abSum, cdSum);
         } else{
-            a_plus_b_multiply_c_plus_d = abSum * cdSum;
+            abcd = abSum * cdSum;
         }
 
+
         // Simple multiply
-        Integer ac = Integer.valueOf(numbers.get("a")) * Integer.valueOf(numbers.get("c"));
-        Integer bd = Integer.valueOf(numbers.get("b")) * Integer.valueOf(numbers.get("d"));
+        int ac = a * c;
+        int bd = b * d;
 
         // Karacuba method
-        Double result = Math.pow(10, n) * ac + Math.pow(10, n/2) * Math.abs(a_plus_b_multiply_c_plus_d - ac - bd) + bd;
-
+        int n = (numbers.get("a") + numbers.get("b")).length();
+        // TODO n calculating problem
+        Double result = Math.pow(10, n) * ac + Math.pow(10, n/2) * Math.abs(abcd - ac - bd) + bd;
         return result.intValue();
     }
 
 
-    public Map<String, String> devide(int newInteger){
+    public Map<String, String> devide(int newIntegerOne, int newIntegerTwo){
+        System.out.println("\n DEVIDE");
         Map<String, String> newIntegers = new HashMap<>();
-        String value = String.valueOf(newInteger);
+        String value = String.valueOf(newIntegerOne)+String.valueOf(newIntegerTwo);
 
         if((value.length() % 4) != 0) {
             while (value.length() % 4 != 0) {
@@ -79,7 +88,6 @@ public class TryKaracubaMethod {
         int length = value.length();
 
         String generalFirstPart = value.substring(0, length/2);
-        System.out.println("generalFirstPart = " + generalFirstPart);
 
         String firstPart = generalFirstPart.substring(0, generalFirstPart.length()/2);
         String secondPart = generalFirstPart.substring(generalFirstPart.length()/2, generalFirstPart.length());
@@ -87,7 +95,6 @@ public class TryKaracubaMethod {
         System.out.println("secondPart = " + secondPart);
 
         String generalSecondPart = value.substring(length/2, length);
-        System.out.println("generalSecondPart = " + generalSecondPart);
 
         String thirdPart = generalSecondPart.substring(0, generalSecondPart.length()/2);
         String fourthPart = generalSecondPart.substring(generalSecondPart.length()/2, generalSecondPart.length());
