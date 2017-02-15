@@ -71,12 +71,15 @@ public class TryKaracubaMethod {
 
         // Karacuba method
         int n = (numbers.get("a") + numbers.get("b")).length();
-        // TODO BigDecemical multiply issue
-        Double result = Math.pow(10, n) * ac + Math.pow(10, n/2) * Math.abs(abcd - ac - bd) + bd;
+
+        BigDecimal firstLog = new BigDecimal(String.valueOf(Math.pow(10, n)));
+        BigDecimal secondLog = new BigDecimal(String.valueOf(Math.pow(10, n/2)));
+
+        BigDecimal result = firstLog.multiply(ac).add(secondLog.multiply(abcd.subtract(ac).subtract(bd).abs()).add(bd));
         System.out.println("\n Results");
         System.out.println("Show The n = " + n);
         System.out.println("Show The Result = " + result);
-        return result.intValue();
+        return result;
     }
 
 
@@ -104,7 +107,7 @@ public class TryKaracubaMethod {
         System.out.println("\n RESULT AFTER SECOND UPDATING");
         System.out.println("smalSizeInt = " + smalSizeInt);
         System.out.println("normalSizeInt = " + normalSizeInt);
-        
+
         Map<String, String> newIntegers = new HashMap<>();
         int length = normalSizeInt.length();
 
