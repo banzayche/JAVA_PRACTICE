@@ -80,34 +80,47 @@ public class TryKaracubaMethod {
 
     public Map<String, String> devide(int newIntegerOne, int newIntegerTwo){
         System.out.println("\n DEVIDE");
-        Map<String, String> newIntegers = new HashMap<>();
-        String value = String.valueOf(newIntegerOne)+String.valueOf(newIntegerTwo);
+        System.out.println("newIntegerOne = " + newIntegerOne);
+        System.out.println("newIntegerTwo = " + newIntegerTwo);
 
-        if((value.length() % 4) != 0) {
-            while (value.length() % 4 != 0) {
-                value = "0" + value;
+        String smalSizeInt   = String.valueOf(newIntegerOne > newIntegerTwo ? newIntegerTwo : newIntegerOne);
+        String normalSizeInt = String.valueOf(newIntegerOne > newIntegerTwo ? newIntegerOne : newIntegerTwo);
+
+        while (smalSizeInt.length() != normalSizeInt.length()) {
+            smalSizeInt = "0" + smalSizeInt;
+        }
+        System.out.println("\n RESULT AFTER FIRST UPDATING");
+        System.out.println("smalSizeInt = " + smalSizeInt);
+        System.out.println("normalSizeInt = " + normalSizeInt);
+
+        if(smalSizeInt.length() % 2 != 0) {
+            while (smalSizeInt.length() % 2 != 0) {
+                smalSizeInt = "0" + smalSizeInt;
+                normalSizeInt = "0" + normalSizeInt;
             }
         }
-        int length = value.length();
+        System.out.println("\n RESULT AFTER SECOND UPDATING");
+        System.out.println("smalSizeInt = " + smalSizeInt);
+        System.out.println("normalSizeInt = " + normalSizeInt);
 
-        String generalFirstPart = value.substring(0, length/2);
+        // TODO have to devide integer by 4. If piece consists only of zeros equal it to 0;
+        Map<String, String> newIntegers = new HashMap<>();
+        int length = normalSizeInt.length();
 
-        String firstPart = generalFirstPart.substring(0, generalFirstPart.length()/2);
-        String secondPart = generalFirstPart.substring(generalFirstPart.length()/2, generalFirstPart.length());
-        System.out.println("firstPart = " + firstPart);
-        System.out.println("secondPart = " + secondPart);
+        String a = smalSizeInt.substring(0, length/2);
+        String b = smalSizeInt.substring(length/2, length);
+        System.out.println("firstPart = " + a);
+        System.out.println("secondPart = " + b);
 
-        String generalSecondPart = value.substring(length/2, length);
+        String c = normalSizeInt.substring(0, length/2);
+        String d = normalSizeInt.substring(length/2, length);
+        System.out.println("thirdPart = " + c);
+        System.out.println("fourthPart = " + d);
 
-        String thirdPart = generalSecondPart.substring(0, generalSecondPart.length()/2);
-        String fourthPart = generalSecondPart.substring(generalSecondPart.length()/2, generalSecondPart.length());
-        System.out.println("thirdPart = " + thirdPart);
-        System.out.println("fourthPart = " + fourthPart);
-
-        newIntegers.put("a", firstPart);
-        newIntegers.put("b", secondPart);
-        newIntegers.put("c", thirdPart);
-        newIntegers.put("d", fourthPart);
+        newIntegers.put("a", a);
+        newIntegers.put("b", b);
+        newIntegers.put("c", c);
+        newIntegers.put("d", d);
 
         return newIntegers;
     }
