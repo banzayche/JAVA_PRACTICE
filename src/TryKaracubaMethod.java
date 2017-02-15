@@ -1,4 +1,6 @@
 import java.util.*;
+import java.math.*;
+
 /**
  * Created by serhiiprokopchuk on 2/13/17.
  */
@@ -39,37 +41,37 @@ public class TryKaracubaMethod {
     }
 
     // Simple solution for algorithm
-    public int calculateThisShit(int numberOne, int numberTwo){
-//        // Devide numbers a, b, c, d.
+    public BigDecimal calculateThisShit(BigDecimal numberOne, BigDecimal numberTwo){
+        // Devide numbers a, b, c, d.
         Map<String, String> numbers = devide(numberOne, numberTwo);
         System.out.println("numbers(devided) = " + numbers);
 
         // return result.intValue();
-        int a = Integer.parseInt(numbers.get("a"));
-        int b = Integer.parseInt(numbers.get("b"));
-        int c = Integer.parseInt(numbers.get("c"));
-        int d = Integer.parseInt(numbers.get("d"));
+        BigDecimal a = new BigDecimal(numbers.get("a"));
+        BigDecimal b = new BigDecimal(numbers.get("b"));
+        BigDecimal c = new BigDecimal(numbers.get("c"));
+        BigDecimal d = new BigDecimal(numbers.get("d"));
 
         // Get sum to define length of Integer
-        int abSum = a + b;
-        int cdSum = c + d;
+        BigDecimal abSum = a.add(b);
+        BigDecimal cdSum = c.add(d);
 
-        int abcd = 0;
+        BigDecimal abcd;
         // Call recursion or not
         if(String.valueOf(abSum).length() > 1 || String.valueOf(cdSum).length() > 1) {
-            abcd = calculateThisShit(abSum, cdSum);
+            abcd = calculateThisShit( abSum, cdSum);
         } else{
-            abcd = abSum * cdSum;
+            abcd = abSum.multiply(cdSum);
         }
 
 
         // Simple multiply
-        int ac = a * c;
-        int bd = b * d;
+        BigDecimal ac = a.multiply(c);
+        BigDecimal bd = b.multiply(d);
 
         // Karacuba method
         int n = (numbers.get("a") + numbers.get("b")).length();
-        // TODO n calculating problem
+        // TODO BigDecemical multiply issue
         Double result = Math.pow(10, n) * ac + Math.pow(10, n/2) * Math.abs(abcd - ac - bd) + bd;
         System.out.println("\n Results");
         System.out.println("Show The n = " + n);
@@ -78,13 +80,13 @@ public class TryKaracubaMethod {
     }
 
 
-    public Map<String, String> devide(int newIntegerOne, int newIntegerTwo){
+    public Map<String, String> devide(BigDecimal newIntegerOne, BigDecimal newIntegerTwo){
         System.out.println("\n DEVIDE");
         System.out.println("newIntegerOne = " + newIntegerOne);
         System.out.println("newIntegerTwo = " + newIntegerTwo);
 
-        String smalSizeInt   = String.valueOf(newIntegerOne > newIntegerTwo ? newIntegerTwo : newIntegerOne);
-        String normalSizeInt = String.valueOf(newIntegerOne > newIntegerTwo ? newIntegerOne : newIntegerTwo);
+        String smalSizeInt   = String.valueOf(newIntegerOne.compareTo(newIntegerTwo) == 1 ? newIntegerTwo : newIntegerOne);
+        String normalSizeInt = String.valueOf(newIntegerOne.compareTo(newIntegerTwo) == 1 ? newIntegerOne : newIntegerTwo);
 
         while (smalSizeInt.length() != normalSizeInt.length()) {
             smalSizeInt = "0" + smalSizeInt;
@@ -102,8 +104,7 @@ public class TryKaracubaMethod {
         System.out.println("\n RESULT AFTER SECOND UPDATING");
         System.out.println("smalSizeInt = " + smalSizeInt);
         System.out.println("normalSizeInt = " + normalSizeInt);
-
-        // TODO have to devide integer by 4. If piece consists only of zeros equal it to 0;
+        
         Map<String, String> newIntegers = new HashMap<>();
         int length = normalSizeInt.length();
 
