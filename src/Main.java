@@ -12,7 +12,6 @@ public class Main {
         BigDecimal value2 = new BigDecimal("7114192848577754587969744626558571536728983167954552999895348492");
         newTryKaracubaMethod.calculateThisShit(value1, value2);
 
-//        System.out.println(newRecursionTest.recursionRun(4));
         System.out.println("\n Try parse xml");
         HowToWorkWithParser newHowToWorkWithParser = new HowToWorkWithParser();
         newHowToWorkWithParser.parseXml();
