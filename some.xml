@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<library>
+    <book id="393">
+        <name>Norse Mythology</name>
+        <author>Neil Gaiman</author>
+        <price>85</price>
+    </book>
+    <book id="493">
+        <name>Nineteen Eighty-Four</name>
+        <author>George Orwell</author>
+        <price>95</price>
+    </book>
+    <book id="593">
+        <name>When the Screaming Stops</name>
+        <author>Simon Spence</author>
+        <price>90</price>
+    </book>
+</library>
